@@ -1,11 +1,16 @@
 import { useEffect } from "react"
-import { usersAPI } from "./api/users-api"
+import { getUsers } from "./store/user-store/user-helpers"
+import { useUsers } from "./store/user-store/user-selectors"
 
 
 function App() {
   
+  const users = useUsers()
+
+  console.log(users);
+  
   useEffect(() => {
-    usersAPI.getUsers()
+    getUsers()
   }, [])
   return (
   <>
@@ -13,5 +18,11 @@ function App() {
   </>
   )
 }
+
+
+
+
+
+
 
 export default App
