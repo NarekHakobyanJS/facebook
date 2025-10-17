@@ -1,8 +1,12 @@
+import { useEffect } from "react"
+import { usersAPI } from "./api/users-api"
 
-import './App.css'
 
 function App() {
   
+  useEffect(() => {
+    usersAPI.getUsers()
+  }, [])
   return (
   <>
     Social APP
