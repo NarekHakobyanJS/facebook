@@ -7,6 +7,7 @@ const initialState : IUserStateType = {
     users : []
 }
 
+//Variable
 const userStore : StateCreator<IUserStoreType> = ((set, get) => ({
     ...initialState,
     getUsers : async () => {
