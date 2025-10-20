@@ -6,8 +6,8 @@ class UsersAPI extends SocialAPI {
         super()
     }
 
-    async getUsers(){
-        const resposne = await this.requestConfig().get<IGetUsersResposneType>('/users')
+    async getUsers(page : number){
+        const resposne = await this.requestConfig().get<IGetUsersResposneType>(`/users?page=${page}&count=100`)
 
         return resposne.data
     }
