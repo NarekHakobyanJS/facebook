@@ -6,9 +6,11 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
+import Link from '@mui/material/Link';
 import type { IUser } from '../../../shared/types';
 
 import userIcon from '../../../assets/user.png'
+import { NavLink } from 'react-router-dom';
 
 type UserCardPropsType = {
     user : IUser
@@ -36,7 +38,15 @@ export default function UserCard({user} : UserCardPropsType) {
           follow
         </Button>
         <Button variant='contained' size="small" color="primary">
+          <Link
+          component={NavLink}
+          sx={{color : 'white'}}
+          to={`/users/profile/${user.id}`}
+          >
+
           view profile
+          </Link>
+          
         </Button>
       </CardActions>
     </Card>
