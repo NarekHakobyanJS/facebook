@@ -1,5 +1,5 @@
 import { create, type StateCreator } from "zustand";
-import { devtools } from 'zustand/middleware'
+import { devtools, persist} from 'zustand/middleware'
 import { usersAPI } from "../../api/users-api";
 import type { IUserStateType, IUserStoreType } from "./user-store.types";
 
@@ -13,7 +13,7 @@ const initialState: IUserStateType = {
 //Variable
 const userStore: StateCreator<
     IUserStoreType,
-    [['zustand/devtools', never]]> = ((set, get) => ({
+    [ ['zustand/devtools', never], ['zustand/persist', unknown]]> = ((set, get) => ({
     ...initialState,
     getUsers: async () => {
         const {page} = get()
@@ -28,5 +28,13 @@ const userStore: StateCreator<
 
 export const useUserStore = create<IUserStoreType>()(
     devtools(
-        userStore
+        persist(
+            userStore,
+            {
+                name : 'current-page',
+                partialize(state) {
+                    return {page : state.page}
+                },
+            }
+        )
     ))
