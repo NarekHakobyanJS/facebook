@@ -15,7 +15,7 @@ const profileStore : StateCreator<IProfileStoreType> = ((set) => ({
     }
 }))
 
-export const useProfile = create<IProfileStoreType>()(
+export const useProfileStore = create<IProfileStoreType>()(
     devtools(profileStore)
    
 )

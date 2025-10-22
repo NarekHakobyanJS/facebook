@@ -1,24 +1,24 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { profileAPI } from '../../../api/profile-api'
-import { useProfile } from '../../../store/profile-store'
+import { useProfile } from '../../../store/profile-store/profile-selectors'
+import { getProfile } from '../../../store/profile-store/profile-helpers'
+import { Box } from '@mui/material'
+import ProfileCard from '../../organisms/ProfileCard/ProfileCard'
 
 const Profile = () => {
-    let {id} = useParams()
-    let {profile, 
-      getProfile
-      } = useProfile()
+  let { id } = useParams()
+  let profile = useProfile()
 
 
-      console.log(profile);
-      
-    
-    useEffect(() => {
-      getProfile(id)
-    }, [id])
-    
+  useEffect(() => {
+    getProfile(id)
+  }, [id])
+
   return (
-    <div>Profile</div>
+    <Box>
+
+      <ProfileCard profile={profile}/>
+    </Box>
   )
 }
 
