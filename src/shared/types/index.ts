@@ -30,5 +30,9 @@ interface IProfile {
     photos :IPhotos
 }
 
+interface ILoginBody {
+    email : string,
+    password : string
+}
 
-export type {IUser, IProfile}
+export type {IUser, IProfile, ILoginBody}
