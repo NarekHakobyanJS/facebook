@@ -9,4 +9,16 @@ interface ILoginResponseType {
     resultCode : number
 }
 
-export type {ILoginResponseType}
+
+interface IAuthMeResponseType {
+    data : {
+        id : number,
+        login : string
+        email : string
+    },
+    messages : string[],
+    fieldsErrors : any[],
+    resultCode : number
+}
+
+export type {ILoginResponseType, IAuthMeResponseType}

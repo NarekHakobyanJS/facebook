@@ -4,14 +4,28 @@ import { authAPI } from "../../api/auth-api";
 import { persist } from "zustand/middleware";
 
 const initialState : IAuthStateType = {
-    userId : null
+    userId : null,
+    authUserData : null,
+    authErrorMessage : []
 }
 
 const authStore : StateCreator<IAuthStoreType> = ((set, get) => ({
     ...initialState,
     login : async (body) => {
         const response = await authAPI.login(body)
-        set({userId : response.data.userId})
+
+        if(response.resultCode === 0){
+            set({userId : response.data.userId})
+        }else {
+            set({authErrorMessage : response.messages})
+        }
+    },
+    authMe : async () => {
+        const response = await authAPI.authMe()
+
+        if(response.resultCode === 0){
+            set({authUserData : response.data})
+        }
     }
 }))
 
@@ -21,7 +35,10 @@ export const useAuthStore = create<IAuthStoreType>()(
         {
             name : 'user-id',
             partialize(state) {
-                return {userId : state.userId}
+                return {
+                    userId : state.userId,
+                    authUserData : state.authUserData
+                }
             },
         }
     )

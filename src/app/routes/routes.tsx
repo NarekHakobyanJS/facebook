@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../../components/templates/Layout/Layout";
-import { Users, Home, Profile } from "../../components/pages";
+import { Users, Home, Profile, Login } from "../../components/pages";
 
 
 export const router = createBrowserRouter([
@@ -19,6 +19,10 @@ export const router = createBrowserRouter([
             {
                 path : '/users/profile/:id',
                 element : <Profile />
+            }, 
+            {
+                path : '/login',
+                element : <Login />
             }
         ]
     }

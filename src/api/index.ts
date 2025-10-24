@@ -8,7 +8,10 @@ class SocialAPI {
     }
 
     protected requestConfig(){
-        return axios.create({baseURL : this.#baseURL})
+        return axios.create({
+            baseURL : this.#baseURL, 
+            withCredentials : true
+        })
     }
 }
 

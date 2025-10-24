@@ -2,9 +2,16 @@ import type { ILoginBody } from "../../shared/types"
 
 interface IAuthActionType {
     login : (body : ILoginBody) => Promise<void>
+    authMe : () => Promise<void>
 }
 interface IAuthStateType {
-    userId : null | number
+    userId : null | number,
+    authUserData : null | {
+        id : number,
+        login : string
+        email : string
+    },
+    authErrorMessage : string[]
 }
 
 interface IAuthStoreType extends IAuthActionType, IAuthStateType{
