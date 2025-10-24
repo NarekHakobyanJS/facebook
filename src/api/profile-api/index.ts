@@ -8,6 +8,7 @@ class ProfileAPI extends SocialAPI {
 
         return resposne.data
     }
+    
 }
 
 export const profileAPI = new ProfileAPI()

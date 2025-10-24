@@ -4,11 +4,12 @@ import type { IProfile } from '../../../shared/types'
 
 type ProfileCardPropsType = {
     profile : IProfile | null
+    authUserID : boolean
 }
-const ProfileCard = ({profile} : any) => {
+const ProfileCard = ({profile,  authUserID} : ProfileCardPropsType) => {
   return (
     <Box>
-        <ProfileDescription profile={profile}/>
+        <ProfileDescription profile={profile} authUserID={authUserID}/>
     </Box>
   )
 }

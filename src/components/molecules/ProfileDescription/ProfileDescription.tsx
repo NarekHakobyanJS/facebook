@@ -8,9 +8,10 @@ import { ProfileInfo } from '../../atoms/ProfileInfo/ProfileInfo'
 
 type ProfileDescriptionPropsType = {
     profile : IProfile | null
+    authUserID : boolean
 }
 
-export const ProfileDescription = ({profile} : ProfileDescriptionPropsType) => {
+export const ProfileDescription = ({profile, authUserID} : ProfileDescriptionPropsType) => {
   return (
     <Box>
 
@@ -23,7 +24,7 @@ export const ProfileDescription = ({profile} : ProfileDescriptionPropsType) => {
           gap : '20px'
         }}
         >
-            <ProfilePhoto profilePhoto={profile?.photos?.large}/>
+            <ProfilePhoto authUserID={authUserID} profilePhoto={profile?.photos?.large}/>
             <ProfileInfo profile={profile}/>
         </Box>
     </Box>
