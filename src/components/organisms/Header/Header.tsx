@@ -14,14 +14,20 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { NavLink } from 'react-router-dom';
+import { useAuthUserData, useUserId } from '../../../store/auth-store/auth-selctors';
+import { logOut } from '../../../store/auth-store/auth-helpers';
 
 const pages = [{path : '/', title : "Home"}, {path : '/users', title : "Users"}];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export function Header() {
+
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
+
+  const authUserData = useAuthUserData()
+  const userId = useUserId()
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -131,35 +137,26 @@ export function Header() {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+
+          {
+            userId
+            ?
+            <Box sx={{ display : 'flex', gap : '20px' }}>
+           
+            <Button 
+            onClick={logOut}
+            color='error' variant='contained'>Logout</Button>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={authUserData?.login} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            
           </Box>
+          : 
+          ''
+          }
+         
         </Toolbar>
       </Container>
     </AppBar>

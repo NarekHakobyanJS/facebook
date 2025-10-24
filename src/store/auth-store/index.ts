@@ -26,6 +26,12 @@ const authStore : StateCreator<IAuthStoreType> = ((set, get) => ({
         if(response.resultCode === 0){
             set({authUserData : response.data})
         }
+    },
+    logOut : async () => {
+       const response = await authAPI.logOut() 
+
+       set({userId : null, authUserData : null})
+       useAuthStore.persist.clearStorage()
     }
 }))
 

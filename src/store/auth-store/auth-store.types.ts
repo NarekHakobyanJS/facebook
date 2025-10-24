@@ -3,6 +3,7 @@ import type { ILoginBody } from "../../shared/types"
 interface IAuthActionType {
     login : (body : ILoginBody) => Promise<void>
     authMe : () => Promise<void>
+    logOut : () => Promise<void>
 }
 interface IAuthStateType {
     userId : null | number,

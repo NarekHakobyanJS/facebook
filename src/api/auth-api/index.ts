@@ -5,15 +5,21 @@ import type { IAuthMeResponseType, ILoginResponseType } from "./auth-api.types";
 class AuthAPI extends SocialAPI {
 
     async login(body : ILoginBody){
-        const resposne = await this.requestConfig().post<ILoginResponseType>(`/auth/login`, body)
+        const response = await this.requestConfig().post<ILoginResponseType>(`/auth/login`, body)
         
-        return resposne.data
+        return response.data
     }
 
     async authMe(){
-        const resposne = await this.requestConfig().get<IAuthMeResponseType>('/auth/me')
+        const response = await this.requestConfig().get<IAuthMeResponseType>('/auth/me')
 
-        return resposne.data
+        return response.data
+    }
+
+    async logOut(){
+        const response = await this.requestConfig().delete('/auth/login')
+
+        return response.data
     }
 }
 
