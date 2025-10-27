@@ -6,6 +6,7 @@ import UserImg from '../../../assets/user.png'
 import { Button, styled } from '@mui/material';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import axios from 'axios';
+import { changeProfilePhoto } from '../../../store/profile-store/profile-helpers';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -27,25 +28,11 @@ type ProfilePhotoPropsType = {
 export default function ProfilePhoto({ profilePhoto, authUserID }: ProfilePhotoPropsType) {
 
   const handleChangePhoto = (e : any) => {
-    ///// VAT CODE 
-    console.dir(e.target.files[0])
 
     const files = e.target.files[0]
 
-    const formData = new FormData()
+    changeProfilePhoto(files)
 
-    formData.append('file', files)
-   
-    axios.put(
-      'https://social-network.samuraijs.com/api/1.0/profile/photo',
-      formData,
-      {
-        withCredentials : true,
-        headers : {
-          'api-key' : 'c7542f6d-7c8e-476b-99bd-73721e6242b4'
-        }
-      }
-    )
   }
 
 

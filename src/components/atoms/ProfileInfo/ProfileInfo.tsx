@@ -13,7 +13,6 @@ type ProfileInfoPropsType = {
 }
 export function ProfileInfo({ profile }: ProfileInfoPropsType) {
 
-    console.log(profile);
 
     return (
         <TableContainer component={Paper}>

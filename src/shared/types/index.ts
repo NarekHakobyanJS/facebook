@@ -1,7 +1,8 @@
-interface IPhotos {
+export interface IPhotos {
     small : null | string
-        large : null | string
+    large : null | string
 }
+
 interface IUser {
     name : string
     id : number
@@ -33,6 +34,14 @@ interface IProfile {
 interface ILoginBody {
     email : string,
     password : string
+}
+
+export interface IEditeProfile {
+    userId : number | null | undefined
+    aboutMe: string | null | undefined
+    fullName: string | null | undefined
+    lookingForAJob: boolean | undefined
+    lookingForAJobDescription: string | null | undefined
 }
 
 export type {IUser, IProfile, ILoginBody}

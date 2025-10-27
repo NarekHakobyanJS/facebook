@@ -10,7 +10,10 @@ class SocialAPI {
     protected requestConfig(){
         return axios.create({
             baseURL : this.#baseURL, 
-            withCredentials : true
+            withCredentials : true,
+            headers : {
+                'api-key' : '97b016cf-738c-412b-8c5c-fe131956f90e'
+              }
         })
     }
 }
